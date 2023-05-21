@@ -6,6 +6,8 @@ def set_plot(ax=None,figure = None):
         figure = plt.figure(figsize=(8,8))
     if ax==None:
         ax = plt.axes(projection='3d')
+    else:
+        ax = plt.axes()
     
     ax.set_title("3d Plot")
     ax.set_xlim((-7.5,10))

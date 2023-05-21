@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Virtual Simulated Camera</title>
+  </head>
+  <body>
+    <form class="form-horizontal" method="post">
+        <fieldset>
+        
+        <!-- Form Name -->
+        <legend>Configurações</legend>
+        
+        <!-- Multiple Radios -->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="radios"><h4>Referencial</h4></label>
+          <div class="col-md-4">
+          <div class="radio">
+            <label for="radios-0">
+              <input type="radio" name="radios" id="radios-0" value="1" checked="checked">
+              Mundo
+            </label>
+            </div>
+          <div class="radio">
+            <label for="radios-1">
+              <input type="radio" name="radios" id="radios-1" value="2">
+              Camera
+            </label>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="transla"><h4>Translação</h4></label>  
+          <div class="col-md-4">
+          <input id="transla" name="transla" type="text" placeholder="(x,y,z)" class="form-control input-md">
+          <span class="help-block">Exemplo, transladar 5 unidades em x -&gt; (5,0,0)</span>  
+          </div>
+        </div>
+        
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="rot"><h4>Rotação</h4></label>  
+          <div class="col-md-4">
+          <input id="rot" name="rot" type="text" placeholder="(x,y,z)" class="form-control input-md">
+          <span class="help-block">Exemplo, rotacionar 90 graus em x -&gt; (90,0,0)</span>  
+          </div>
+        </div>
+        
+        <!-- Button -->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="foto"></label>
+          <div class="col-md-4">
+            <button type="submit" id="foto" name="action" class="btn btn-primary" value="Generate">Gerar</button>
+          </div>
+        </div>
+
+        <!-- Button -->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="reset"><h4>Resetar Camera</h4></label>
+            <div class="col-md-4">
+            <button id="reset" name="action" class="btn btn-danger" value="Reset">Resetar</button>
+            </div>
+        </div>
+
+        </fieldset>
+        </form>
+        <img src="{{url_for('static',filename='fig.png')}}">
+        <img src="{{url_for('static',filename='fig2.png')}}">
+
+  </body>
+</html>

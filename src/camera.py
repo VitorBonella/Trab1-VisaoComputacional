@@ -38,14 +38,25 @@ class Camera():
         #image projection matrix
         self.img_projection_matrix = self.intrinsic_matrix@self.projection_matrix@self.extrinsic_matrix
 
-    def camera_motion(self,motion_matrix):
+    def update_projection_matrix(self):
+        self.extrinsic_matrix = np.linalg.inv(self.cam)
+        self.img_projection_matrix = self.intrinsic_matrix@self.projection_matrix@self.extrinsic_matrix
 
-        self.cam = np.dot(self.cam,np.dot(self.origin,motion_matrix))
+    def camera_motion(self,motion_matrix,referential):
+
+        #mundo
+        if referential == 1:
+            self.cam = np.dot(motion_matrix,self.cam)
+            self.update_projection_matrix()
+        #camera
+        elif referential == 2:
+            self.cam = self.cam@motion_matrix@self.origin
+            self.update_projection_matrix()
 
 
-    def get_pose(self,object):
+    def get_pose(self,obj):
 
-        image = np.dot(self.img_projection_matrix,object)
+        image = np.dot(self.img_projection_matrix,obj)
 
         image_x = image[0]/image[2]
         image_y = image[1]/image[2]
