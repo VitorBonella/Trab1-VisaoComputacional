@@ -1,73 +1,171 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Virtual Simulated Camera</title>
-  </head>
-  <body>
-    <form class="form-horizontal" method="post">
+
+<head>
+  <meta charset="utf-8">
+  <title>Virtual Simulated Camera</title>
+</head>
+
+<body>
+  <div class="row">
+    <div class="col-sm-6">
+      <form class="form-horizontal" method="post">
         <fieldset>
-        
-        <!-- Form Name -->
-        <legend>Configurações</legend>
-        
-        <!-- Multiple Radios -->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="radios"><h4>Referencial</h4></label>
-          <div class="col-md-4">
-          <div class="radio">
-            <label for="radios-0">
-              <input type="radio" name="radios" id="radios-0" value="1" checked="checked">
-              Mundo
-            </label>
-            </div>
-          <div class="radio">
-            <label for="radios-1">
-              <input type="radio" name="radios" id="radios-1" value="2">
-              Camera
-            </label>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Text input-->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="transla"><h4>Translação</h4></label>  
-          <div class="col-md-4">
-          <input id="transla" name="transla" type="text" placeholder="(x,y,z)" class="form-control input-md">
-          <span class="help-block">Exemplo, transladar 5 unidades em x -&gt; (5,0,0)</span>  
-          </div>
-        </div>
-        
-        <!-- Text input-->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="rot"><h4>Rotação</h4></label>  
-          <div class="col-md-4">
-          <input id="rot" name="rot" type="text" placeholder="(x,y,z)" class="form-control input-md">
-          <span class="help-block">Exemplo, rotacionar 90 graus em x -&gt; (90,0,0)</span>  
-          </div>
-        </div>
-        
-        <!-- Button -->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="foto"></label>
-          <div class="col-md-4">
-            <button type="submit" id="foto" name="action" class="btn btn-primary" value="Generate">Gerar</button>
-          </div>
-        </div>
 
-        <!-- Button -->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="reset"><h4>Resetar Camera</h4></label>
+          <!-- Form Name -->
+          <legend>Configurações</legend>
+
+          <!-- Multiple Radios -->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="radios">
+              Referencial
+            </label>
             <div class="col-md-4">
-            <button id="reset" name="action" class="btn btn-danger" value="Reset">Resetar</button>
+              <div class="radio">
+                <label for="radios-0">
+                  <input type="radio" name="radios" id="radios-0" value="1" checked="checked">
+                  Mundo
+                </label>
+              </div>
+              <div class="radio">
+                <label for="radios-1">
+                  <input type="radio" name="radios" id="radios-1" value="2">
+                  Camera
+                </label>
+              </div>
             </div>
-        </div>
+          </div>
 
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="transla">
+              Translação
+            </label>
+            <div class="col-md-4">
+              <input id="transla" name="transla" type="text" placeholder="(x,y,z)" class="form-control input-md">
+              <span class="help-block">Exemplo, transladar 5 unidades em x -&gt; (5,0,0)</span>
+            </div>
+          </div>
+
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="rota">
+              Rotação
+            </label>
+            <div class="col-md-4">
+              <input id="rota" name="rota" type="text" placeholder="Ângulo em Graus" class="form-control input-md">
+
+            </div>
+          </div>
+
+          <!-- Multiple Radios (inline) -->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="radios-eixo">Eixo da Rotação</label>
+            <div class="col-md-4">
+              <label class="radio-inline" for="radios-eixo-0">
+                <input type="radio" name="radios-eixo" id="radios-eixo-0" value="1" checked="checked">
+                X
+              </label>
+              <label class="radio-inline" for="radios-eixo-1">
+                <input type="radio" name="radios-eixo" id="radios-eixo-1" value="2">
+                Y
+              </label>
+              <label class="radio-inline" for="radios-eixo-2">
+                <input type="radio" name="radios-eixo" id="radios-eixo-2" value="3">
+                Z
+              </label>
+            </div>
+          </div>
+
+
+          <!-- Button -->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="foto"></label>
+            <div class="col-md-4">
+              <button type="submit" id="foto" name="action" class="btn btn-primary" value="Generate">Gerar</button>
+            </div>
+          </div>
+
+          <!-- Button -->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="reset"></label>
+            <div class="col-md-4">
+              <button id="reset" name="action" class="btn btn-danger" value="Reset">Resetar</button>
+            </div>
+          </div>
         </fieldset>
-        </form>
-        <img src="{{url_for('static',filename='fig.png')}}">
-        <img src="{{url_for('static',filename='fig2.png')}}">
+      </form>
+    </div>
+    <div class="col-sm-6">
+      <form class="form-horizontal" method="post">
+        <fieldset>
 
-  </body>
+          <!-- Form Name -->
+          <legend>Trocar Camera</legend>
+
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="focal">Distancia Focal</label>
+            <div class="col-md-4">
+              <input id="focal" name="focal" type="text" placeholder="" class="form-control input-md" required="">
+              <span class="help-block">Atual: {{ camera_focal }}</span>
+            </div>
+          </div>
+
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="w_px">Width Px</label>
+            <div class="col-md-4">
+              <input id="w_px" name="w_px" type="text" placeholder="" class="form-control input-md" required="">
+              <span class="help-block">Atual: {{ camera_w_px }}</span>
+            </div>
+          </div>
+
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="h_px">Height Px</label>
+            <div class="col-md-4">
+              <input id="h_px" name="h_px" type="text" placeholder="" class="form-control input-md" required="">
+              <span class="help-block">Atual: {{ camera_h_px }}</span>
+            </div>
+          </div>
+
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="w_mm">Width mm</label>
+            <div class="col-md-4">
+              <input id="w_mm" name="w_mm" type="text" placeholder="" class="form-control input-md" required="">
+              <span class="help-block">Atual: {{ camera_w_mm }}</span>
+            </div>
+          </div>
+
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="h_mm">Height mm</label>
+            <div class="col-md-4">
+              <input id="h_mm" name="h_mm" type="text" placeholder="" class="form-control input-md" required="">
+              <span class="help-block">Atual: {{ camera_h_mm }}</span>
+            </div>
+          </div>
+          <!-- Button -->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="change-camera"></label>
+            <div class="col-md-4">
+              <button id="change-camera" name="action" class="btn btn-info" value="Camera">Trocar</button>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+
+  <img src="{{url_for('static',filename='fig.png')}}">
+  <img src="{{url_for('static',filename='fig2.png')}}">
+
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+</body>
+
 </html>

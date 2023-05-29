@@ -6,8 +6,9 @@ from object import Object
 from plot_utils import *
 from rigid_body import RigidBody as rb
 
+import re
 
-from math import pi
+from math import pi,radians
 
 np.set_printoptions(formatter={'float': lambda x: "{0:0.3f}".format(x)})
 np.set_printoptions(precision=3,suppress=True)   
@@ -28,18 +29,42 @@ def get_translation_by_string(translation_string):
 
     return T
 
+def get_rotation_by_string(rotation_string,eixo):
+
+    rotation_degree = float(rotation_string)
+    eixo = int(eixo)
+
+    rotation_rad = radians(rotation_degree)
+
+    rotation_matrix = []
+
+    if eixo == 1:
+        rotation_matrix = rb.x_rotation(rotation_rad)
+    elif eixo == 2: 
+        rotation_matrix = rb.y_rotation(rotation_rad)
+    elif eixo == 3:
+        rotation_matrix = rb.z_rotation(rotation_rad)
+
+    return rotation_matrix
+
+
+
 def modify_state(cam,obj,translation_string,rotation_string,referencial):
 
     referencial = int(referencial) #string to int
 
-    T = get_translation_by_string(translation_string)
-    M = T
+    if rotation_string[0].lstrip('-').isdigit():
+        #rotação
+        R = get_rotation_by_string(rotation_string[0],rotation_string[1])
 
-    #print(f"Camera Origin \n {cam.origin}")
+        cam.camera_motion(R,referencial)
 
-    cam.camera_motion(M,referencial)
-
-    #print(f"Camera Cam \n {cam.cam}")
+    valid_translation = re.match('\([-.0-9]+,[-.0-9]+,[-.0-9]+\)',translation_string)
+    if valid_translation:
+        #translação
+        T = get_translation_by_string(translation_string)
+        
+        cam.camera_motion(T,referencial)
 
     return cam
    
@@ -67,8 +92,8 @@ def gerar_imagens(cam,obj):
     ax1 = plt.axes()
     ax1.set_title("Imagem")
 
-    ax1.set_xlim([0,1280])
-    ax1.set_ylim([720,0])
+    ax1.set_xlim([0,cam.width_px])
+    ax1.set_ylim([cam.height_px,0])
     ax1.grid('True')
 
     ax1.plot(image_x,image_y)

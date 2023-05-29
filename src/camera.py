@@ -11,9 +11,9 @@ class Camera():
         self.focal_distance = focal_distance
         
         self.width_px = width_px
-        self.heigth_px = height_px
+        self.height_px = height_px
         self.width_mm = width_mm
-        self.heigth_mm = height_mm
+        self.height_mm = height_mm
 
         #intrinsic parameters
         self.sx = width_px/width_mm
