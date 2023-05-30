@@ -10,11 +10,11 @@ def set_plot(ax=None,figure = None):
         ax = plt.axes()
     
     ax.set_title("3d Plot")
-    ax.set_xlim((-7.5,10))
+    #ax.set_xlim((-7.5,10))
     ax.set_xlabel("X axis")
-    ax.set_ylim((0,12))
+    #ax.set_ylim((0,12))
     ax.set_ylabel("Y axis")
-    ax.set_zlim((-10,5))
+    #ax.set_zlim((-10,5))
     ax.set_zlabel("Z axis")
     return ax
 

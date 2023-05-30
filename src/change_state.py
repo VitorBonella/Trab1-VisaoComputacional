@@ -83,6 +83,8 @@ def gerar_imagens(cam,obj):
 
     draw_arrows(cam.cam[:,-1],cam.cam[:,0:3],ax0)
 
+    ax0.set_aspect('equal')
+
     plt.savefig("static/fig.png")
 
     image_x,image_y = cam.get_pose(obj.object)
