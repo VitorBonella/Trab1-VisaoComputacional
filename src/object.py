@@ -2,7 +2,7 @@ from stl import mesh
 import numpy as np
 
 class Object():
-    def __init__(self,stl_path = 'Dragon.stl'):
+    def __init__(self,stl_path = 'old_wolf3.stl'):
 
         self.object_points = mesh.Mesh.from_file(stl_path)
 
